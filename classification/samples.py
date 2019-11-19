@@ -6,7 +6,7 @@
 # John DeNero (denero@cs.berkeley.edu) and Dan Klein (klein@cs.berkeley.edu).
 # For more info, see http://inst.eecs.berkeley.edu/~cs188/sp09/pacman.html
 
-import util
+from classification import util
 
 ## Constants
 DATUM_WIDTH = 0 # in pixels
@@ -109,7 +109,7 @@ def loadDataFile(filename, n,width,height):
       data.append(list(fin.pop()))
     if len(data[0]) < DATUM_WIDTH-1:
       # we encountered end of file...
-      print "Truncating at %d examples (maximum)" % i
+      print("Truncating at %d examples (maximum)" % i)
       break
     items.append(Datum(data,DATUM_WIDTH,DATUM_HEIGHT))
   return items
@@ -178,12 +178,12 @@ def _test():
   items = loadDataFile("digitdata/trainingimages", n,28,28)
   labels = loadLabelsFile("digitdata/traininglabels", n)
   for i in range(1):
-    print items[i]
-    print items[i]
+    print (items[i])
+    print (items[i])
     print (items[i].height)
     print (items[i].width)
-    print dir(items[i])
-    print items[i].getPixels()
+    print (dir(items[i]))
+    print (items[i].getPixels())
 
 if __name__ == "__main__":
   _test()  
