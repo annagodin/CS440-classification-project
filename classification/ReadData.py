@@ -97,11 +97,7 @@ def extract_features(data, data_labels):
 
         image_info.append(Image.Image(data_labels[index], features))
         index = index + 1
-
-
-# print imageInfo[1].classFeatures[3]
-# print imageInfo[1].classLable
-
+    return image_info
 
 # main
 train_digit_image = "data/digitdata/trainingimages"
@@ -116,4 +112,8 @@ train_face_image_list = read_data(train_face_image, "face")
 train_digit_labels_list = read_labels(train_digit_label)
 train_face_labels_list = read_labels(train_face_label)
 
-extract_features(train_digit_image_list, train_digit_labels_list)
+image_info_list = extract_features(train_digit_image_list, train_digit_labels_list)
+#print image_info_list[0].class_features
+
+face_info_list = extract_features(train_face_image_list, train_face_labels_list )
+#print face_info_list[0].class_features
