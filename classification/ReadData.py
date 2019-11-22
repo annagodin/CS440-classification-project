@@ -50,21 +50,7 @@ def read_labels(file_name):
     return labels
 
 
-# main
-train_digit_image = "data/digitdata/trainingimages"
-train_face_image = "data/facedata/facedatatrain"
-
-train_digit_label = "data/digitdata/traininglabels"
-train_face_label = "data/facedata/facedatatrainlabels"
-
-train_digit_image_list = read_data(train_digit_image, "digit")
-train_face_image_list = read_data(train_face_image, "face")
-#
-train_digit_labels_list = read_labels(train_digit_label)
-train_face_labels_list = read_labels(train_face_label)
-
-
-def extractFeatures(data, data_labels):
+def extract_features(data, data_labels):
     image_info = []
     index = 0
     count = 0
@@ -117,4 +103,17 @@ def extractFeatures(data, data_labels):
 # print imageInfo[1].classLable
 
 
-extractFeatures(train_digit_image_list, train_digit_labels_list)
+# main
+train_digit_image = "data/digitdata/trainingimages"
+train_face_image = "data/facedata/facedatatrain"
+
+train_digit_label = "data/digitdata/traininglabels"
+train_face_label = "data/facedata/facedatatrainlabels"
+
+train_digit_image_list = read_data(train_digit_image, "digit")
+train_face_image_list = read_data(train_face_image, "face")
+#
+train_digit_labels_list = read_labels(train_digit_label)
+train_face_labels_list = read_labels(train_face_label)
+
+extract_features(train_digit_image_list, train_digit_labels_list)
