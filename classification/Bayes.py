@@ -17,8 +17,8 @@ def naive_bayes_face_training(face_image_data_training, face_image_data_testing,
 
     bayes_matrix_face = geek.empty([feature_size, max+1])
     bayes_matrix_not_face = geek.empty([feature_size, max+1])
-    bayes_matrix_not_face.fill(0)
-    bayes_matrix_face.fill(0)
+    bayes_matrix_not_face.fill(0.001)
+    bayes_matrix_face.fill(0.001)
 
     for image in face_image_data_training:
         for i in range(feature_size): #i = feature Num
