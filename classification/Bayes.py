@@ -206,6 +206,6 @@ def naive_bayes_digit_training(digit_image_data_training, digit_image_data_testi
 
         percent_array.sort(key=lambda x: x.class_percent, reverse=True)
         guess_array.append(percent_array[0].class_label)
-        
-    print len(guess_array)
+
+
     return guess_array
