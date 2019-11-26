@@ -119,7 +119,8 @@ face_info_list = extract_features(train_face_image_list, train_face_labels_list 
 #print face_info_list[6].class_label
 
 guess = []
-guess = Bayes.naive_bayes_face_training(face_info_list,face_info_list,9)
+#guess = Bayes.naive_bayes_face_training(face_info_list,face_info_list,9)
+guess = Bayes.naive_bayes_digit_training(image_info_list,image_info_list,9)
 
 
 #count = 0
@@ -130,3 +131,11 @@ guess = Bayes.naive_bayes_face_training(face_info_list,face_info_list,9)
 #print count
 #print len(guess)
 
+
+count = 0
+for i in range(len(guess)):
+    if(guess[i] == train_digit_labels_list[i]):
+        count +=1
+
+print count
+print len(guess)
