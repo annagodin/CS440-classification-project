@@ -1,23 +1,24 @@
-from scipy.spatial import distance
 import Image
 import numpy as np
 import NearestNeighborTracker
 from collections import Counter
 
-def nearest_neighbor_face_training(data, predict, k = 3):
+def nearest_neighbor(data, predict):
     pd =[]
     for image in predict:
         distances = []
         for image2 in data:
-            euclidean_distance = np.linalg.norm(image2.class_features-image.class_features)
-            distances.append(NearestNeighborTracker.NearestNeighborTracker(image.class_label,euclidean_distance))
+            distance = np.linalg.norm(image2.class_features-image.class_features)
+            distances.append(NearestNeighborTracker.NearestNeighborTracker(image2.class_label,distance))
+        distances.sort(key=lambda x: x.class_distance, reverse=False)
 
-        distances.sort(key=lambda x: x.class_distance, reverse=True)
         vote_array = [0,0,0]
         vote_array[0] = distances[0].class_label
         vote_array[1] = distances[1].class_label
         vote_array[2] = distances[2].class_label
-        pd.append(most_frequent(vote_array))
+        vote_result = Counter(vote_array).most_common(1)[0][0]
+        pd.append(vote_result)
+
     return pd
 
 # taken from https://www.geeksforgeeks.org/python-find-most-frequent-element-in-a-list/
