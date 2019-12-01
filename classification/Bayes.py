@@ -41,7 +41,7 @@ def naive_bayes_face_training(face_image_data_training, face_image_data_testing,
   #-------------------------------------------------------------------------------------------Testing begins
 
     guess_array = []
-    for image in face_image_data_training: #5000
+    for image in face_image_data_testing: #5000
         face_tally = 1
         not_face_tally = 1
         index = 0
@@ -176,7 +176,7 @@ def naive_bayes_digit_training(digit_image_data_training, digit_image_data_testi
   #-------------------------------------------------------------------------------------------Testing begins
 
     guess_array = []
-    for image in digit_image_data_training: #5000
+    for image in digit_image_data_testing: #5000
         num_tally = [1,1,1,1,1,1,1,1,1,1]
         index = 0
         percent_array = []
