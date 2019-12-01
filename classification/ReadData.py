@@ -186,12 +186,12 @@ testing_face_info_list_KN = extract_features_Matrix(test_face_image_list, test_f
 guess = []
 #guess = Bayes.naive_bayes_face_training(training_face_info_list,testing_face_info_list,9)
 #guess = Bayes.naive_bayes_digit_training(training_image_info_list,testing_image_info_list,9)
-#guess = NearestNeighbor.nearest_neighbor(training_image_info_list_KN,testing_image_info_list_KN)
-guess = NearestNeighbor.nearest_neighbor(training_face_info_list_KN,testing_face_info_list_KN)
+guess = NearestNeighbor.nearest_neighbor(training_image_info_list_KN,testing_image_info_list_KN)
+#guess = NearestNeighbor.nearest_neighbor(training_face_info_list_KN,testing_face_info_list_KN)
 
 
 count = 0
-flag = False
+flag = True
 
 if(flag == False):
     for i in range(len(guess)):
