@@ -3,11 +3,11 @@ import numpy as np
 import NearestNeighborTracker
 from collections import Counter
 
-def nearest_neighbor(data, predict):
+def nearest_neighbor(TestingData, trainingData):
     pd =[]
-    for image in predict:
+    for image in trainingData:
         distances = []
-        for image2 in data:
+        for image2 in TestingData:
             distance = np.linalg.norm(image2.class_features-image.class_features)
             distances.append(NearestNeighborTracker.NearestNeighborTracker(image2.class_label,distance))
         distances.sort(key=lambda x: x.class_distance, reverse=False)
@@ -16,7 +16,7 @@ def nearest_neighbor(data, predict):
         vote_array[0] = distances[0].class_label
         vote_array[1] = distances[1].class_label
         vote_array[2] = distances[2].class_label
-        vote_result = Counter(vote_array).most_common(1)[0][0]
+        vote_result = most_frequent(vote_array)
         pd.append(vote_result)
 
     return pd
