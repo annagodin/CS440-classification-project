@@ -60,37 +60,43 @@ def extract_features(data, data_labels):
 
         for row in range(len(image)):
             r = (len(image) / 3)
+            a = r
+            b = 2*r
+            d = 3*r
 
             for col in range(len(image[row])):
                 c = (len(image[row]) / 3)
+                e = c
+                f = 2*c
+                g = 3*c
 
                 if image[row][col] == '1':  # if black pixel
 
-                    if row <= r and col <= c:  # Quadrant 1
+                    if row <=a and col <=e:  # Quadrant 1
                         features[0] += 1
 
-                    elif r < row <= (2 * r) and col <= c:  # Quadrant 2
+                    elif row>a and row<=b  and col<=e:  # Quadrant 2
                         features[1] += 1
 
-                    elif row > (2 * r) and col <= c:  # Quadrant 3
+                    elif row>b and row<=d  and col <=e:  # Quadrant 3
                         features[2] += 1
 
-                    elif row <= r and c < col <= (2 * c):  # Quadrant 4
+                    elif row <=a and col>e and col<=f:  # Quadrant 4
                         features[3] += 1
 
-                    elif r < row < (2 * r) and c < col <= (2 * c):  # Quadrant 5
+                    elif row>a and row<=b  and col>e and col<=f :  # Quadrant 5
                         features[4] += 1
 
-                    elif row > (2 * r) and c < col <= (2 * c):  # Quadrant 6
+                    elif row>b and row<=d  and col>e and col<=f :  # Quadrant 6
                         features[5] += 1
 
-                    elif row <= r and col > (2 * c):  # Quadrant 7
+                    elif row <=a and col>f and col<=g:  # Quadrant 7
                         features[6] += 1
 
-                    elif r < row <= (2 * r) and col > (2 * c):  # Quadrant 8
+                    elif row>a and row<=b  and col>f and col<=g :  # Quadrant 8
                         features[7] += 1
 
-                    elif row > (2 * r) and col > (2 * c):  # Quadrant 9
+                    elif row>b and row<=d  and col>f and col<=g:  # Quadrant 9
                         features[8] += 1
 
                     else:
@@ -110,37 +116,43 @@ def extract_features_Matrix(data, data_labels):
 
         for row in range(len(image)):
             r = (len(image) / 3)
+            a = r
+            b = 2*r
+            d = 3*r
 
             for col in range(len(image[row])):
                 c = (len(image[row]) / 3)
+                e = c
+                f = 2*c
+                g = 3*c
 
                 if image[row][col] == '1':  # if black pixel
 
-                    if row <= r and col <= c:  # Quadrant 1
+                    if row <=a and col <=e:  # Quadrant 1
                         features[0][0] += 1
 
-                    elif r < row <= (2 * r) and col <= c:  # Quadrant 2
+                    elif row>a and row<=b  and col<=e:  # Quadrant 2
                         features[0][1] += 1
 
-                    elif row > (2 * r) and col <= c:  # Quadrant 3
+                    elif row>b and row<=d  and col <=e:  # Quadrant 3
                         features[0][2] += 1
 
-                    elif row <= r and c < col <= (2 * c):  # Quadrant 4
+                    elif row <=a and col>e and col<=f:  # Quadrant 4
                         features[1][0] += 1
 
-                    elif r < row < (2 * r) and c < col <= (2 * c):  # Quadrant 5
+                    elif row>a and row<=b  and col>e and col<=f:  # Quadrant 5
                         features[1][1] += 1
 
-                    elif row > (2 * r) and c < col <= (2 * c):  # Quadrant 6
+                    elif row>b and row<=d  and col>e and col<=f:  # Quadrant 6
                         features[1][2] += 1
 
-                    elif row <= r and col > (2 * c):  # Quadrant 7
+                    elif row <=a and col>f and col<=g:  # Quadrant 7
                         features[2][0] += 1
 
-                    elif r < row <= (2 * r) and col > (2 * c):  # Quadrant 8
+                    elif row>a and row<=b  and col>f and col<=g:  # Quadrant 8
                         features[2][1] += 1
 
-                    elif row > (2 * r) and col > (2 * c):  # Quadrant 9
+                    elif row>b and row<=d  and col>f and col<=g:  # Quadrant 9
                         features[2][2] += 1
 
                     else:
