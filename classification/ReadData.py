@@ -573,30 +573,31 @@ test_digit_labels_list = read_labels(test_digit_label)
 test_face_labels_list = read_labels(test_face_label)
 
 # training
-training_image_info_list = extract_features(train_digit_image_list, train_digit_labels_list)
+training_digit_info_list = extract_features(train_digit_image_list, train_digit_labels_list)
 training_face_info_list = extract_features(train_face_image_list, train_face_labels_list)
 
-training_image_info_list_KN = extract_features_Matrix(train_digit_image_list, train_digit_labels_list)
+training_digit_info_list_KN = extract_features_Matrix(train_digit_image_list, train_digit_labels_list)
 training_face_info_list_KN = extract_features_Matrix(train_face_image_list, train_face_labels_list)
 
 # testing
-testing_image_info_list = extract_features(test_digit_image_list, test_digit_labels_list)
+testing_digit_info_list = extract_features(test_digit_image_list, test_digit_labels_list)
 testing_face_info_list = extract_features(test_face_image_list, test_face_labels_list)
 
-testing_image_info_list_KN = extract_features_Matrix(test_digit_image_list, test_digit_labels_list)
+testing_digit_info_list_KN = extract_features_Matrix(test_digit_image_list, test_digit_labels_list)
 testing_face_info_list_KN = extract_features_Matrix(test_face_image_list, test_face_labels_list)
 
 guess = []
-
+#
 # guess = Bayes.naive_bayes_face_training(training_face_info_list,testing_face_info_list,100)
-#guess = Bayes.naive_bayes_digit_training(training_image_info_list,testing_image_info_list,100)
-#guess = NearestNeighbor.nearest_neighbor(training_image_info_list_KN,testing_image_info_list_KN)
-#guess = NearestNeighbor.nearest_neighbor(training_face_info_list_KN,testing_face_info_list_KN)
+# guess = Bayes.naive_bayes_digit_training(training_digit_info_list,testing_digit_info_list,100)
+# guess = NearestNeighbor.nearest_neighbor(training_digit_info_list_KN,testing_digit_info_list_KN)
+# guess = NearestNeighbor.nearest_neighbor(training_face_info_list_KN,testing_face_info_list_KN)
+# guess = Perceptron.perceptron_face_training(training_face_info_list, testing_face_info_list, 100)
 
-guess = Perceptron.perceptron_face_training(training_face_info_list, testing_face_info_list, 100)
+guess = Perceptron.perceptron_digit_training(training_digit_info_list, testing_digit_info_list, 100)
 
 count = 0
-flag = False
+flag = True
 
 if (flag == False):
     for i in range(len(guess)):
