@@ -7,9 +7,10 @@ import NearestNeighbor
 import Perceptron
 import math
 import sys
+from random import sample
 
 
-def read_data(file_name, type, amount):
+def read_data(file_name, type):
     if type == "digit":
         image_size = 28
     else:
@@ -37,15 +38,12 @@ def read_data(file_name, type, amount):
                 numbers.append(image)
                 num_images += 1
                 # print num_images
-                if num_images != -1 and num_images == amount:
-                    # print("num images processed: " + str(len(numbers)))
-                    return numbers
                 image = []
             line = fp.readline()
     return numbers
 
 
-def read_labels(file_name, amount):
+def read_labels(file_name):
     labels = []
     num_labels = 0
     with open(file_name) as fp:
@@ -57,9 +55,6 @@ def read_labels(file_name, amount):
             line = fp.readline()
             num_labels += 1
             # print num_labels
-            if num_labels != -1 and num_labels == amount:
-                # print("num labels processed: " + str(len(labels)))
-                return labels
     return labels
 
 
@@ -574,6 +569,11 @@ def get_accuracy(guess, test_labels_list):
     return float(count) / len(guess)
 
 
+def write_to_file(accuracy):
+    f = open("results.txt", "a")
+    f.write(str(accuracy) + "\n")
+    f.close()
+
 
 # Main - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -612,16 +612,19 @@ if sys.argv[1] == "-d":  # digits
     print "digits"
     train_digit_image = "data/digitdata/trainingimages"
     train_digit_label = "data/digitdata/traininglabels"
-    train_digit_image_list = read_data(train_digit_image, "digit", amount_testing_data_digits[percentage])
-    train_digit_labels_list = read_labels(train_digit_label, amount_testing_data_digits[percentage])
+    train_digit_image_list = read_data(train_digit_image, "digit")
+    train_digit_labels_list = read_labels(train_digit_label)
 
     test_digit_image = "data/digitdata/testimages"
     test_digit_label = "data/digitdata/testlabels"
-    test_digit_image_list = read_data(test_digit_image, "digit", -1)  # -1 means no limit on how much data is to be read
-    test_digit_labels_list = read_labels(test_digit_label, -1)
+    test_digit_image_list = read_data(test_digit_image, "digit")
+    test_digit_labels_list = read_labels(test_digit_label)
     # training
     training_digit_info_list = extract_features(train_digit_image_list, train_digit_labels_list)
+    training_digit_info_list = sample(training_digit_info_list, amount_testing_data_digits[percentage])
+
     training_digit_info_list_KN = extract_features_matrix(train_digit_image_list, train_digit_labels_list)
+    training_digit_info_list_KN = sample(training_digit_info_list_KN, amount_testing_data_digits[percentage])
     # testing
     testing_digit_info_list = extract_features(test_digit_image_list, test_digit_labels_list)
     testing_digit_info_list_KN = extract_features_matrix(test_digit_image_list, test_digit_labels_list)
@@ -638,20 +641,25 @@ if sys.argv[1] == "-d":  # digits
     print algo
     accuracy = get_accuracy(guess, test_digit_labels_list)
     print accuracy
+    write_to_file(accuracy)
 elif sys.argv[1] == "-f":  # faces
     print "faces"
     train_face_image = "data/facedata/facedatatrain"
     train_face_label = "data/facedata/facedatatrainlabels"
-    train_face_image_list = read_data(train_face_image, "face", amount_testing_data_faces[percentage])
-    train_face_labels_list = read_labels(train_face_label, amount_testing_data_faces[percentage])
+    train_face_image_list = read_data(train_face_image, "face")
+    train_face_labels_list = read_labels(train_face_label)
 
     test_face_image = "data/facedata/facedatatest"
     test_face_label = "data/facedata/facedatatestlabels"
-    test_face_image_list = read_data(test_face_image, "face", -1)
-    test_face_labels_list = read_labels(test_face_label, -1)
+    test_face_image_list = read_data(test_face_image, "face")
+    test_face_labels_list = read_labels(test_face_label)
     # training
     training_face_info_list = extract_features(train_face_image_list, train_face_labels_list)
+    training_face_info_list = sample(training_face_info_list, amount_testing_data_faces[percentage])
+
     training_face_info_list_KN = extract_features_matrix(train_face_image_list, train_face_labels_list)
+    training_face_info_list_KN = sample(training_face_info_list_KN, amount_testing_data_faces[percentage])
+
     # testing
     testing_face_info_list = extract_features(test_face_image_list, test_face_labels_list)
     testing_face_info_list_KN = extract_features_matrix(test_face_image_list, test_face_labels_list)
@@ -668,5 +676,6 @@ elif sys.argv[1] == "-f":  # faces
     print algo
     accuracy = get_accuracy(guess, test_face_labels_list)
     print accuracy
+    write_to_file(accuracy)
 
 print "--------------"
