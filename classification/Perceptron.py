@@ -1,3 +1,6 @@
+#Authors: Anna Godin & Kimberly Wolak
+
+
 import decimal
 
 import Image

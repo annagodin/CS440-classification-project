@@ -1,3 +1,6 @@
+#Authors: Anna Godin & Kimberly Wolak
+
+
 import Image
 import numpy as np
 import NearestNeighborTracker

@@ -1,3 +1,6 @@
+#Authors: Anna Godin & Kimberly Wolak
+
+
 import Image
 import numpy as geek
 import PercentageTracker
@@ -41,6 +44,9 @@ def naive_bayes_face_training(face_image_data_training, face_image_data_testing,
     # -------------------------------------------------------------------------------------------Testing begins
 
     guess_array = []
+
+    return guess_array  # to delete
+
     for image in face_image_data_testing:  # 5000
         face_tally = 1
         not_face_tally = 1
@@ -50,8 +56,8 @@ def naive_bayes_face_training(face_image_data_training, face_image_data_testing,
                 face_tally = (face_tally * bayes_matrix_face[index][class_feature])
                 not_face_tally = (not_face_tally * bayes_matrix_not_face[index][class_feature])
             else:
-                face_tally = face_tally*0.001
-                not_face_tally = not_face_tally*0.001
+                face_tally = face_tally * 0.001
+                not_face_tally = not_face_tally * 0.001
             index += 1
         if face_tally >= not_face_tally:
             guess_array.append('1')
@@ -177,8 +183,10 @@ def naive_bayes_digit_training(digit_image_data_training, digit_image_data_testi
             bayes_matrix_nine[i][j] = (bayes_matrix_nine[i][j] / digit_data_total[9])
 
     # -------------------------------------------------------------------------------------------Testing begins
-
     guess_array = []
+
+    return guess_array  # to delete
+
     for image in digit_image_data_testing:  # 5000
         num_tally = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
         index = 0

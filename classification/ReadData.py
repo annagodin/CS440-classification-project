@@ -1,3 +1,5 @@
+#Authors: Anna Godin & Kimberly Wolak
+
 import random
 from scipy.spatial import distance
 import Image
@@ -8,6 +10,7 @@ import Perceptron
 import math
 import sys
 from random import sample
+import time
 
 
 def read_data(file_name, type):
@@ -569,9 +572,9 @@ def get_accuracy(guess, test_labels_list):
     return float(count) / len(guess)
 
 
-def write_to_file(accuracy):
-    f = open("results.txt", "a")
-    f.write(str(accuracy) + "\n")
+def write_to_file(file_name, contents):
+    f = open(file_name, "a")
+    f.write(str(contents) + "\n")
     f.close()
 
 
@@ -585,6 +588,7 @@ def write_to_file(accuracy):
 # -k = k-nearest
 
 # sample call for digits, running bayes and percent data 50%: ReadData.py -d -b 5
+start_time = time.time()
 
 if len(sys.argv) != 4:
     print "Incorrect number of arguments"
@@ -638,10 +642,16 @@ if sys.argv[1] == "-d":  # digits
     elif sys.argv[2] == "-k":
         algo = "k-nearest"
         guess = NearestNeighbor.nearest_neighbor(training_digit_info_list_KN, testing_digit_info_list_KN)
+
+    end_time = time.time() - start_time
+    write_to_file("time-to-train.txt", end_time)
     print algo
+    exit() # to delete - time training
+
+
     accuracy = get_accuracy(guess, test_digit_labels_list)
     print accuracy
-    write_to_file(accuracy)
+    write_to_file("results.txt", accuracy)
 elif sys.argv[1] == "-f":  # faces
     print "faces"
     train_face_image = "data/facedata/facedatatrain"
@@ -673,9 +683,16 @@ elif sys.argv[1] == "-f":  # faces
     elif sys.argv[2] == "-k":
         algo = "k-nearest"
         guess = NearestNeighbor.nearest_neighbor(training_face_info_list_KN, testing_face_info_list_KN)
+
+    end_time = time.time() - start_time
+    write_to_file("time-to-train.txt", end_time)
     print algo
+    exit()  # to delete - time training
+
+
+
     accuracy = get_accuracy(guess, test_face_labels_list)
     print accuracy
-    write_to_file(accuracy)
+    write_to_file("results.txt", accuracy)
 
 print "--------------"
